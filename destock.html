@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page avec texte et code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            text-align: center;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+        }
+        .code-section {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            font-family: "Courier New", monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .code-section input {
+            width: 100%;
+            padding: 10px;
+            background-color: #444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-family: "Courier New", monospace;
+            font-size: 14px;
+            outline: none;
+            resize: none;
+        }
+        .copy-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .copy-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        Kill aura PlayerCordonée Mini-X-ray Jesus
+    </div>
+
+    <div class="code-section">
+        <h3>Voici un long code à copier :</h3>
+        <textarea id="codeText" rows="10" readonly>
+        // Ton long code ici
+        function exampleCode() {
+            console.log("C'est un code long et compliqué.");
+            var x = 10;
+            var y = 20;
+            var result = x + y;
+            console.log(result);
+        }
+
+        exampleCode();
+        </textarea>
+        <button class="copy-btn" onclick="copyCode()">Copier le code</button>
+    </div>
+
+    <script>
+        function copyCode() {
+            var copyText = document.getElementById("codeText");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // Pour les appareils mobiles
+
+            // Copier le texte
+            document.execCommand("copy");
+
+            // Avertir l'utilisateur que le code a été copié
+            alert("Code copié !");
+        }
+    </script>
+
+</body>
+</html>
