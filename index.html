@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Accès sécurisé</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e1e2f, #3a3a6a);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .box {
+            background: rgba(0,0,0,0.4);
+            padding: 30px;
+            border-radius: 12px;
+            width: 320px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.6);
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+        }
+
+        button {
+            background: #5f7cff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #4a63d8;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box" id="loginBox">
+    <h2>🔐 Accès</h2>
+    <input type="number" id="codeInput" placeholder="Entre le code">
+    <button onclick="verifierCode()">Valider</button>
+    <p id="message"></p>
+</div>
+
+<div class="box hidden" id="secretBox">
+    <h2></h2>
+
+    
+    <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheat Bloxd 784</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            text-align: center;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+        }
+        .code-section {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            font-family: "Courier New", monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .code-section input {
+            width: 100%;
+            padding: 10px;
+            background-color: #444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-family: "Courier New", monospace;
+            font-size: 14px;
+            outline: none;
+            resize: none;
+        }
+        .copy-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .copy-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        Auto Click
+    </div>
+
+    <div class="code-section">
+        <h3>Voici un AutoClick :) :</h3>
+        <textarea id="codeText" rows="10" readonly>
+        // === AutoClicker ultra-rapide (toggle R) ===
+(function(){
+  if (window._fastAutoClickerV2) {
+    console.log('AutoClicker déjà chargé. Appuie sur R pour toggle.');
+    return;
+  }
+
+  window._fastAutoClickerV2 = true;
+
+  // ---- CONFIG ----
+  let running = false;
+  let timer = null;
+  let lastPos = {x: 0, y: 0};
+  // délai entre clics (ms). 1 ms = très rapide. Ajuste si besoin (ex: 5, 10).
+  let delayMs = 1;
+
+  // CPS limite de sécurité facultative (0 = no limit)
+  let maxCPS = 0; // mettre par ex 2000 pour limiter à 2000 clicks/sec
+
+  // ---- helpers ----
+  document.addEventListener('mousemove', e => lastPos = {x: e.clientX, y: e.clientY});
+
+  function isTyping() {
+    const tag = (document.activeElement && document.activeElement.tagName) || '';
+    return ['INPUT','TEXTAREA','SELECT'].includes(tag);
+  }
+
+  function clickAt(x,y){
+    const el = document.elementFromPoint(x,y);
+    if (!el) return false;
+    // déclenche une suite d'événements pour mimicker un click "réel"
+    ['mouseover','mousedown','click','mouseup'].forEach(type=>{
+      el.dispatchEvent(new MouseEvent(type, {
+        clientX: x, clientY: y, bubbles: true, cancelable: true, view: window
+      }));
+    });
+    return true;
+  }
+
+  // ---- overlay d'état ----
+  const overlayId = '_fac_overlay_clicker';
+  function createOverlay(){
+    if(document.getElementById(overlayId)) return;
+    const s = document.createElement('style');
+    s.id = overlayId + '_style';
+    s.textContent = `
+      #${overlayId}{
+        position: fixed;
+        bottom: 12px;
+        left: 12px;
+        z-index: 2147483647;
+        background: rgba(0,0,0,0.6);
+        color: #fff;
+        padding: 8px 12px;
+        border-radius: 10px;
+        font-family: system-ui, Arial, sans-serif;
+        font-size: 13px;
+        pointer-events: none;
+        backdrop-filter: blur(4px);
+      }
+      #${overlayId} .dot { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:8px; vertical-align:middle; }
+      #${overlayId} .dot.off { background:#7f8c8d; }
+      #${overlayId} .dot.on { background:#10b981; box-shadow:0 0 6px rgba(16,185,129,0.6); }
+    `;
+    document.head.appendChild(s);
+
+    const d = document.createElement('div');
+    d.id = overlayId;
+    d.innerHTML = `<span class="dot off"></span><strong id="${overlayId}_state">STOP</strong>
+                   <div style="margin-top:6px;font-size:12px;opacity:0.9">
+                     CPS: <span id="${overlayId}_cps">0</span> · Delay: <span id="${overlayId}_delay">${delayMs}</span>ms
+                   </div>
+                   <div style="margin-top:4px;font-size:11px;opacity:0.8">Toggle: R — Stop: stopFastClicker()</div>`;
+    document.body.appendChild(d);
+  }
+  createOverlay();
+
+  function updateOverlay(){
+    const root = document.getElementById(overlayId);
+    if(!root) return;
+    const dot = root.querySelector('.dot');
+    const state = document.getElementById(overlayId + '_state');
+    const cpsEl = document.getElementById(overlayId + '_cps');
+    const delayEl = document.getElementById(overlayId + '_delay');
+    if(running){
+      dot.classList.remove('off'); dot.classList.add('on');
+      state.textContent = 'RUNNING';
+    } else {
+      dot.classList.remove('on'); dot.classList.add('off');
+      state.textContent = 'STOP';
+    }
+    cpsEl.textContent = (window._fac_lastCPS || 0).toFixed(0);
+    delayEl.textContent = delayMs;
+  }
+
+  // ---- CPS tracking ----
+  let clicksInCurrentSecond = 0;
+  window._fac_lastCPS = 0;
+  setInterval(()=>{
+    window._fac_lastCPS = clicksInCurrentSecond;
+    clicksInCurrentSecond = 0;
+    updateOverlay();
+  }, 1000);
+
+  // ---- boucle de click ----
+  function tick(){
+    if(!running) return;
+    // si l'utilisateur tape dans un champ, n'effectue pas de clic (sécurité)
+    if(isTyping()){
+      timer = setTimeout(tick, 200);
+      return;
+    }
+
+    // appliquons limit CPS si défini
+    if(maxCPS > 0 && window._fac_lastCPS >= maxCPS){
+      timer = setTimeout(tick, 20);
+      return;
+    }
+
+    const ok = clickAt(lastPos.x, lastPos.y);
+    if(ok) {
+      clicksInCurrentSecond++;
+    }
+
+    // replanifier
+    timer = setTimeout(tick, Math.max(0, delayMs));
+  }
+
+  // ---- listeners clavier ----
+  document.addEventListener('keydown', function(e){
+    // ignore si focus sur input/textarea/select pour ne pas gêner ta saisie
+    if(isTyping()) return;
+    if(e.key && e.key.toLowerCase() === 'r'){
+      running = !running;
+      if(running){
+        console.log('AutoClicker activé — appuie sur R pour désactiver.');
+        tick();
+      } else {
+        console.log('AutoClicker désactivé.');
+        if(timer) { clearTimeout(timer); timer = null; }
+      }
+      updateOverlay();
+    }
+  });
+
+  // ---- fonctions globales utiles ----
+  window.stopFastClicker = function(){
+    running = false;
+    if(timer) { clearTimeout(timer); timer = null; }
+    updateOverlay();
+    console.log('AutoClicker arrêté via stopFastClicker()');
+  };
+  window.startFastClicker = function(){
+    if(running) return console.log('Déjà en cours.');
+    running = true; tick(); updateOverlay(); console.log('AutoClicker démarré via startFastClicker()');
+  };
+  window.setFastClickerDelay = function(ms){
+    delayMs = Math.max(0, Number(ms) || 0);
+    updateOverlay();
+    console.log('Delay mis à', delayMs, 'ms');
+  };
+  window.setFastClickerMaxCPS = function(cps){
+    maxCPS = Number(cps) || 0;
+    console.log('maxCPS mis à', maxCPS || 'aucun');
+  };
+
+  // info initiale
+  updateOverlay();
+  console.log('AutoClicker prêt. Place la souris, puis appuie sur R pour activer/désactiver.');
+  console.log('Commandes utiles : stopFastClicker(), startFastClicker(), setFastClickerDelay(ms), setFastClickerMaxCPS(n)');
+})();
+
+        </textarea>
+        <button class="copy-btn" onclick="copyCode()">Copier le code</button>
+    </div>
+
+    <script>
+        function copyCode() {
+            var copyText = document.getElementById("codeText");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // Pour les appareils mobiles
+
+            // Copier le texte
+            document.execCommand("copy");
+
+            // Avertir l'utilisateur que le code a été copié
+            alert("Code copié !");
+            alert("Fait Gaffe et Desactive Toujour Le cheat si tu lutilise pas tu risque d'etre ban")
+            alert("si quelqun dit que tu auto dit lui que tu fait du bether fly :)")
+            // code = 140 + 10 
+        }
+    </script>
+
+</body>
+</html>
+    
+    
+    
+    <p>Bienvenue 😎</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    const DUREE_ACCES = 7 * 60 * 1000; // 7 minutes
+
+    // Code initial
+    if (!localStorage.getItem("codeActuel")) {
+        localStorage.setItem("codeActuel", "1000");
+    }
+
+    // Vérifie si l'accès est encore valide au chargement
+    verifierSession();
+
+    function verifierCode() {
+        const entree = Number(document.getElementById("codeInput").value);
+        let codeActuel = Number(localStorage.getItem("codeActuel"));
+        const message = document.getElementById("message");
+
+        if (entree === codeActuel) {
+            // Sauvegarde l'heure de connexion
+            localStorage.setItem("debutAcces", Date.now());
+
+            // Change le code
+            codeActuel += 10;
+            localStorage.setItem("codeActuel", codeActuel);
+
+            afficherSite();
+            console.log("Nouveau code :", codeActuel);
+        } else {
+            message.textContent = "❌ Mauvais code";
+        }
+    }
+
+    function verifierSession() {
+        const debut = localStorage.getItem("debutAcces");
+
+        if (debut && Date.now() - debut < DUREE_ACCES) {
+            afficherSite();
+        } else {
+            localStorage.removeItem("debutAcces");
+        }
+    }
+
+    function afficherSite() {
+        document.getElementById("loginBox").classList.add("hidden");
+        document.getElementById("secretBox").classList.remove("hidden");
+
+        // Expiration automatique
+        setTimeout(() => {
+            localStorage.removeItem("debutAcces");
+            location.reload();
+        }, DUREE_ACCES);
+    }
+</script>
+
+</body>
+</html>
